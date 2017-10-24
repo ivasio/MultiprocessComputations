@@ -1,10 +1,10 @@
 # Make anyway
-.PHONY: lib_obj lib
+.PHONY: lib_obj lib 
 
 # User variables
 USER_PROGRAM=run.c
 COMPILER=gcc
-PRE_FLAGS= -g -std=c99 -fopenmp
+PRE_FLAGS= -std=c99 -fopenmp
 POST_FLAGS= -L . -lompsort -lm -o run
 
 all: lib ${USER_PROGRAM}
@@ -13,6 +13,9 @@ all: lib ${USER_PROGRAM}
 run: all 
 	./run 10000000 2000000 4
 
+bench: lib ${USER_PROGRAM}
+	./script.sh
+
 lib: lib_obj 
 	ar -rc libompsort.a ompMergeSort.o
 	ranlib libompsort.a
@@ -20,6 +23,3 @@ lib: lib_obj
 lib_obj: ompMergeSort.c
 	gcc -g -std=c99 -fopenmp -c ompMergeSort.c
 
-
-bench:
-	

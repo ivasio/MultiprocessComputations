@@ -41,18 +41,11 @@ int main (int argc, char** argv) {
 	parallelMergeSort (array, arraySize, chunkSize, *compare, numThreads);
 	gettimeofday(&end, NULL);
 	double deltaMerge = ((end.tv_sec - start.tv_sec) * 1000000u + end.tv_usec - start.tv_usec) / 1.e6;
-/*
-	gettimeofday(&start, NULL);
-	qsort (initialArray, arraySize, sizeof (int), (__compar_fn_t)compare);
-	gettimeofday(&end, NULL);
-	double deltaQuick = ((end.tv_sec - start.tv_sec) * 1000000u + end.tv_usec - start.tv_usec) / 1.e6;
 
-	(deltaMerge < deltaQuick) ? printf ("Success!\n") : printf ("Fail!\n");
-	printf ("%lg\n", deltaMerge);
-	printf ("%lg\n", deltaQuick);
-	printf ("%lg\n", deltaQuick / deltaMerge);
-*/
-//	printResults (deltaMerge, argv, array, initialArray);
+
+	qsort (initialArray, arraySize, sizeof (int), (__compar_fn_t)compare);
+
+	printResults (deltaMerge, argv, array, initialArray);
 	free (array);
 	free (initialArray);
 	

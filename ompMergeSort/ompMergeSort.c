@@ -7,7 +7,6 @@
 void parallelMergeSort (int* array, size_t arraySize, size_t chunkSize,
 						int (*compare) (const void*, const void*), int numberOfThreads) {	
 
-//	omp_set_dynamic (0);
 	omp_set_num_threads (numberOfThreads);
 	int* initialArray = array;
 	
