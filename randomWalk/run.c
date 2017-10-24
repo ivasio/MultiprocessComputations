@@ -7,7 +7,6 @@
 #include <omp.h>
 #include <sys/time.h>
 
-
  
 typedef struct args_t {
 	
