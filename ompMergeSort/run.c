@@ -43,8 +43,6 @@ int main (int argc, char** argv) {
 	double deltaMerge = ((end.tv_sec - start.tv_sec) * 1000000u + end.tv_usec - start.tv_usec) / 1.e6;
 
 
-	qsort (initialArray, arraySize, sizeof (int), (__compar_fn_t)compare);
-
 	printResults (deltaMerge, argv, array, initialArray);
 	free (array);
 	free (initialArray);
@@ -124,10 +122,9 @@ int printResults (double time, char** argv, int* array, int* initialArray) {
 	
 	if (outputFile) {
 
-		for (int i = 0; i <= arraySize; i++) fprintf (outputFile, "%d ", initialArray[i]);
+		for (int i = 0; i < arraySize; i++) fprintf (outputFile, "%d ", initialArray[i]);
 		fprintf (outputFile, "\n");
-		for (int i = 0; i <= arraySize; i++) fprintf (outputFile, "%d ", array[i]);
-		fprintf (outputFile, "\n");
+		for (int i = 0; i < arraySize; i++) fprintf (outputFile, "%d ", array[i]);
 		
 	}
 
