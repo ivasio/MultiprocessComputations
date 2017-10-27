@@ -174,13 +174,13 @@ int getBounds (bounds_args_t* args) {
 			if (array[median2] < array[median1]) {
 				
 				//if (median2 > right2) no 2 part, just replacing the 1 part while merging
-				while (array[median2] < array[median1] && median2 <= right2)
+				while (median2 <= right2 && array[median2] < array[median1])
 					median2++;
 
 			} else {
 
 				//if (median2 == left2) no 1 part, just replacing the 2 part while merging
-				while (array[median2] >= array[median1] && median2 >= left2) median2--; 
+				while (median2 >= left2 && array[median2] >= array[median1]) median2--; 
 				median2++;
 					
 			}
