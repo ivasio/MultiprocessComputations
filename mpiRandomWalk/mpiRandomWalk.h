@@ -83,6 +83,7 @@ typedef struct Environment {
 	PointsVector* bufferStay;
 	PointsVector* buffersSend[8];
 	PointsVector* buffersReceive[8];
+	void* mpiBuffer;
 
 } Environment;
 

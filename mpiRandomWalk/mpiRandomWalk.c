@@ -64,6 +64,10 @@ Environment* processInit (int* argc, char*** argv, InputParams* input) {
 	env->MyMPIpoint = (MPI_Datatype*) calloc (1, sizeof (MPI_Datatype));
 	MPI_Type_struct (1, lengths, offsets, types, env->MyMPIpoint);
 	MPI_Type_commit (env->MyMPIpoint);
+
+	int mpiBufSize = sizeof (Point) * input->N * 2 + 8 * MPI_BSEND_OVERHEAD;
+	env->mpiBuffer = malloc (mpiBufSize);
+	MPI_Buffer_attach (env->mpiBuffer, mpiBufSize);
 	
 	return env;
 
@@ -351,6 +355,11 @@ void resultsOutput (int rank, PointsVector* points, InputParams* inputParams, do
 
 
 void processFinalize (InputParams* inputParams, Environment* env) {
+
+	void* buf;
+	int bufSize;
+	MPI_Buffer_detach (buf, &bufSize);
+	free (env->mpiBuffer);
 
 	free (inputParams);
 
