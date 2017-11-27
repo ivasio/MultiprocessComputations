@@ -22,6 +22,9 @@ enum MPI_TAGS {TAG_NUMBER, TAG_VECTOR};
 
 typedef struct InputParams {
 
+	int argc;
+	char** argv;
+	
 	int l; 
 	int a; 
 	int b; 

@@ -77,31 +77,14 @@ InputParams* getInputParams (int argc, char** argv) {
 		return NULL;
 	}
 
-
 	params->p[LEFT] = strtod (argv[6], NULL);
-	if (params->p[LEFT] <= 0) {
-		printf ("Left probability must be positive, given %lg\n", params->p[LEFT]);
-		return NULL;
-	}
-	
-	params->p[RIGHT] = strtod (argv[7], NULL);
-	if (params->p[RIGHT] <= 0) {
-		printf ("Right probability must be positive, given %lg\n", params->p[RIGHT]);
-		return NULL;
-	}
-	
-	params->p[TOP] = strtod (argv[8], NULL);
-	if (params->p[TOP] <= 0) {
-		printf ("Top probability must be positive, given %lg\n", params->p[TOP]);
-		return NULL;
-	}
-	
-	params->p[BOTTOM] = strtod (argv[9], NULL);
-	if (params->p[BOTTOM] <= 0) {
-		printf ("Bottom probability must be positive, given %lg\n", params->p[BOTTOM]);
-		return NULL;
-	}
+	params->p[TOP] = strtod (argv[8], NULL) + params->p[LEFT];
+	params->p[RIGHT] = strtod (argv[7], NULL) + params->p[TOP];
+	params->p[BOTTOM] = strtod (argv[9], NULL) + params->p[RIGHT];
 
+	params->argc = argc;
+	params->argv = argv;
+	
 	return params;
 
 }

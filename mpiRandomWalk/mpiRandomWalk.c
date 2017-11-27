@@ -336,14 +336,11 @@ void resultsOutput (int rank, PointsVector* points, InputParams* inputParams, do
 			return;
 		}
 
-		fprintf (outputFile, "%d %d %d %d %d ", inputParams->l, inputParams->a, inputParams->b, 
-			inputParams->n, inputParams->N);
-		for (int i = 0; i < 4; i++) fprintf (outputFile, "%lg ", inputParams->p[i]); 
+		for (int i = 1; i < inputParams->argc; i++) fprintf (outputFile, "%s ", inputParams->argv[i]); 
 		fprintf (outputFile, "%.2lg\n", time);
 
 		for (int i = 0; i < cellsTotally; i++)
 			fprintf (outputFile, "%d: %d\n", i, results[i]);
-
 
 		fclose (outputFile);
 		free (results);
