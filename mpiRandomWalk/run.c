@@ -19,8 +19,8 @@ int main (int argc, char **argv) {
 
 	Environment* env = processInit (&argc, &argv, inputParams);
 
+	int count = 0;
 	while (havePointsToMove (env->points, env->maxSteps)) {
-		
 		movePoints (env->maxSteps, env->points, env->cell, 0.25, inputParams->p);
 		pointsExchange (env);
 	}

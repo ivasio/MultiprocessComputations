@@ -13,9 +13,9 @@
 typedef char bool;
 enum BOOL {FALSE, TRUE};
 
-enum DIRECTIONS {LEFT, TOP, RIGHT, BOTTOM, LEFT_TOP, RIGHT_TOP, RIGHT_BOTTOM, LEFT_BOTTOM};
-
+enum DIRECTIONS {LEFT, TOP, RIGHT, BOTTOM};
 enum MPI_TAGS {TAG_NUMBER, TAG_VECTOR};
+enum SWAP_ACTION_ORDER {SEND_FIRST, RECEIVE_FIRST};
 
 
 // ВХОДНЫЕ ПАРАМЕТРЫ ПРОГРАММЫ
@@ -65,7 +65,9 @@ typedef struct Cell {
 	int bounds[4];
 	int fieldSizeX;
 	int fieldSizeY;
-	int neighbours[8];
+	int neighbours[4];
+	int posX;
+	int posY;
 
 } Cell;
 
@@ -81,8 +83,8 @@ typedef struct Environment {
 
 	PointsVector* points;
 	PointsVector* bufferStay;
-	PointsVector* buffersSend[8];
-	PointsVector* buffersReceive[8];
+	PointsVector* buffersSend[4];
+	PointsVector* buffersReceive[4];
 	void* mpiBuffer;
 
 } Environment;
@@ -107,6 +109,8 @@ void returnPointToTheField (Point* point, Cell* cell);
 bool inBounds (Point* point, Cell* cell, int addition);
 
 void pointsExchange (Environment* env);
+
+void pointsSwap (Environment* env, int direction, int actionOrder);
 
 void fillBufferSend (Cell* cell, PointsVector* points, PointsVector* bufferSend, int direction);
 
