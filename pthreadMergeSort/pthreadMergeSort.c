@@ -17,7 +17,7 @@ void parallelMergeSort (int* array, int size, int chunkSize, int (*compare) (), 
 }
 
 
-// DONE
+
 Environment* threadsInit (int numThreads, int (*compare) ()) {
 
 	pthread_t* threads = (pthread_t*)calloc (numThreads, sizeof (pthread_t));
@@ -41,7 +41,7 @@ Environment* threadsInit (int numThreads, int (*compare) ()) {
 	return env;
 }
 
-// DONE
+
 void qSortAction (int* left, int* right, size_t chunkSize, Queue* queue) {
 
 	if (right - left > chunkSize) {
@@ -67,7 +67,7 @@ void qSortAction (int* left, int* right, size_t chunkSize, Queue* queue) {
 
 }
 
-// DONE
+
 void threadsFinalize (Environment* env) {
 	
 	for (int i = 0; i < env->numThreads; i++)
@@ -87,7 +87,7 @@ void threadsFinalize (Environment* env) {
 	free (env);
 }
 
-// DONE
+
 void mergeAction (int* left, int* right, size_t chunkSize, int (*compare) ()) {
 
 	int partSize = right - left + 1;
@@ -140,7 +140,7 @@ void mergeAction (int* left, int* right, size_t chunkSize, int (*compare) ()) {
 }
 
 
-// DONE
+
 void* consumer (void* args) { // вызывается ptread_create'ом
 
 	Queue* queue = ((ThreadArg*)args)->queue;
